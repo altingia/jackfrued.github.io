@@ -204,7 +204,7 @@
 <li>配置文件。</li>
 <li>库的依赖关系定义。</li>
 </ol>
-<h4 id="Git简介"><a href="#Git简介" class="headerlink" title="Git简介"></a>Git简介</h4><p><img src="http://upload-images.jianshu.io/upload_images/1279331-df4dada955ca9052.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Logo of Git"></p>
+<h4 id="Git简介"><a href="#Git简介" class="headerlink" title="Git简介"></a>Git简介</h4><p><img src="/res/git-logo.png" alt=""></p>
 <p>Git是诞生于2005年的一个开源分布式版本控制系统，最初是Linus Torvalds（Linux之父） 为了帮助管理Linux内核开发而开发的一个版本控制软件。Git与常用的版本控制工具Subversion等不同，它采用了分布式版本控制的方式，在没有中央服务器支持的环境下也能够实施版本控制。</p>
 <p>对于有使用Subversion（以下简称为SVN）经验的人来说，Git和SVN一样摒弃了基于锁定模式的版本控制方案（早期的CVS和VSS使用的就是锁定模式）采用了合并模式，而二者的区别在于：</p>
 <pre><code>1. Git是分布式的，SVN是集中式的，SVN需要中央服务器才能工作。
@@ -229,7 +229,7 @@
 <p>可以通过<code>git log</code>查看提交日志。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log --graph --pretty=oneline --abbrev-commit</span><br></pre></td></tr></table></figure>
 <p>如果要回到历史版本，可以使用下面的命令。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git /reset --hard &lt;commit-id&gt;</span><br><span class="line">git /reset --hard HEAD^</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard &lt;commit-id&gt;</span><br><span class="line">git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
 <p>其他的一些命令可以参考阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener">《常用Git命令清单》</a>或者是码云上的<a href="https://gitee.com/all-about-git" target="_blank" rel="noopener">《Git大全》</a>。</p>
 <h4 id="Git服务器概述"><a href="#Git服务器概述" class="headerlink" title="Git服务器概述"></a>Git服务器概述</h4><p>对于Git来说不像SVN那样一定需要一个中心服务器，刚才我们的操作都是在本地执行的，如果你想通过Git分享你的代码或者与其他人协作，那么就需要服务器的支持。Github为Git提供了远程仓库，它是一个基于Git的代码托管平台，企业用户（付费用户）可以创建仓库，普通用户只能创建公开仓库（代码是可以是他人可见的）。Github是在2008年4月创办的，它上面代码库惊人的增长速度已经证明了它是非常成功的，在2018年6月，微软以75亿美元的天价收购了Github。国内也有类似的代码托管平台，最有名的当属<a href="https://gitee.com/" target="_blank" rel="noopener">码云</a>和<a href="https://coding.net/" target="_blank" rel="noopener">CODING</a>，目前码云和CODING对注册用户都提供了受限的使用私有仓库的功能，同时还提供了对Pull Request的支持（后面会讲到），而且目前提供代码托管服务的平台都集成了“缺陷管理”、“WebHook”等一系列的功能，让我们能做的事情不仅仅是版本控制。当然，如果公司需要也可以搭建自己的Git服务器，具体的方式我们就不在这里进行介绍了，有兴趣的可以自行了解。</p>
 <p><img src="/res/git_logo.png" alt=""></p>
