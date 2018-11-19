@@ -217,7 +217,7 @@
 <p>如果之前完全没有接触过Git，可以先阅读<a href="http://www.bootcss.com/p/git-guide/" target="_blank" rel="noopener">《git - 简易指南》</a>来对Git有一个大致的了解。</p>
 <h4 id="本地实施版本控制"><a href="#本地实施版本控制" class="headerlink" title="本地实施版本控制"></a>本地实施版本控制</h4><p>可以使用下面的命令将目录创建为Git仓库。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></p>
 <p>当你完成了上述操作后，本地目录就变成了下面的样子，左边是你正在操作的工作目录，而右边是你的本地仓库，中间是工作目录和本地仓库之间的一个暂存区（也称为缓存区）。</p>
-<p><img src="res/git_repository.png" alt=""></p>
+<p><img src="/res/git_repository.png" alt=""></p>
 <p>通过<code>git add</code>可以将文件添加到暂存区。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;file&gt; ...</span><br></pre></td></tr></table></figure>
 <p>可以用下面的方式将暂存区的指定文件恢复到工作区。</p>
@@ -229,10 +229,10 @@
 <p>可以通过<code>git log</code>查看提交日志。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log --graph --pretty=oneline --abbrev-commit</span><br></pre></td></tr></table></figure>
 <p>如果要回到历史版本，可以使用下面的命令。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard &lt;commit-id&gt;</span><br><span class="line">git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git /reset --hard &lt;commit-id&gt;</span><br><span class="line">git /reset --hard HEAD^</span><br></pre></td></tr></table></figure>
 <p>其他的一些命令可以参考阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener">《常用Git命令清单》</a>或者是码云上的<a href="https://gitee.com/all-about-git" target="_blank" rel="noopener">《Git大全》</a>。</p>
 <h4 id="Git服务器概述"><a href="#Git服务器概述" class="headerlink" title="Git服务器概述"></a>Git服务器概述</h4><p>对于Git来说不像SVN那样一定需要一个中心服务器，刚才我们的操作都是在本地执行的，如果你想通过Git分享你的代码或者与其他人协作，那么就需要服务器的支持。Github为Git提供了远程仓库，它是一个基于Git的代码托管平台，企业用户（付费用户）可以创建仓库，普通用户只能创建公开仓库（代码是可以是他人可见的）。Github是在2008年4月创办的，它上面代码库惊人的增长速度已经证明了它是非常成功的，在2018年6月，微软以75亿美元的天价收购了Github。国内也有类似的代码托管平台，最有名的当属<a href="https://gitee.com/" target="_blank" rel="noopener">码云</a>和<a href="https://coding.net/" target="_blank" rel="noopener">CODING</a>，目前码云和CODING对注册用户都提供了受限的使用私有仓库的功能，同时还提供了对Pull Request的支持（后面会讲到），而且目前提供代码托管服务的平台都集成了“缺陷管理”、“WebHook”等一系列的功能，让我们能做的事情不仅仅是版本控制。当然，如果公司需要也可以搭建自己的Git服务器，具体的方式我们就不在这里进行介绍了，有兴趣的可以自行了解。</p>
-<p><img src="res/git_logo.png" alt=""></p>
+<p><img src="/res/git_logo.png" alt=""></p>
 <p>我们可以在码云或者CODING上注册账号，也可以使用第三方登录（github账号、微信账号、新浪微博账号、CSDN账号等）的方式。登录成功后就可以创建项目，创建项目几乎是“傻瓜式”的，我们只说几个值得注意的地方。</p>
 <ol>
 <li><p>添加项目成员。创建项目后，可以在项目的“设置”或“管理”中找到“成员管理”功能，这样就可以将其他开发者设置为项目团队的成员，项目成员通常分为“所有者”、“管理者”、“普通成员”和“受限成员”几种角色。</p>
@@ -274,11 +274,11 @@
 <li>能够关联到其他系统，具有可扩展性。</li>
 </ol>
 <p>Redmine是基于Ruby on Rails框架的开源缺陷管理系统，提供了问题管理、代码管理、Wiki等必要的功能，而且支持插件系统，扩展起来也非常容易。</p>
-<p><img src="res/redmine_new_issue.png" alt=""></p>
+<p><img src="/res/redmine_new_issue.png" alt=""></p>
 <p>如果希望了解和使用Redmine，可以关注<a href="http://www.redmine.org.cn/" target="_blank" rel="noopener">Redmine中文网</a>，上面提供了视频教程、经验分享以及其他的安装和使用上的指导。</p>
 <h3 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h3><p>为了快速的产生高品质的软件，在团队开发中，持续集成（CI）也是一个非常重要的基础。按照经典的软件过程模型（瀑布模型），集成的工作一般要等到所有的开发工作都结束后才能开始，但这个时候如果发现了问题，修复问题的代价是非常具体的。基本上，集成实施得越晚，代码量越大，解决问题就越困难。持续集成将版本控制、自动化构建、代码测试融入到一起，让这些工作变得自动化和可协作。</p>
 <p>在所有的CI工具中，Jenkins和TravisCI是最具有代表性的。</p>
-<p><img src="res/jenkins_new_project.png" alt=""></p>
+<p><img src="/res/jenkins_new_project.png" alt=""></p>
 
     </div>
 
