@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="网络API接口设计手机App以及使用了Ajax技术或做了前后端分离的页面都需要通过网络API（Application Programming Interface）和后台进行交互，所谓API，指的应用程序的编程接口；而网络API通畅指的是基于HTTP或HTTPS协议的一个URL（统一资源定位符），通过">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="骆昊">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="骆昊的Python专栏">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="骆昊的Python专栏">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="website">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>骆昊的Python专栏</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/08/11/网络API接口设计/">
+                Untitled
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-08-11</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="网络API接口设计"><a href="#网络API接口设计" class="headerlink" title="网络API接口设计"></a>网络API接口设计</h2><p>手机App以及使用了Ajax技术或做了前后端分离的页面都需要通过网络API（Application Programming Interface）和后台进行交互，所谓API，指的应用程序的编程接口；而网络API通畅指的是基于HTTP或HTTPS协议的一个URL（统一资源定位符），通过这个URL我们可以让服务器对某个资源进行操作并返回操作的结果。基于HTTP(S)协议最大的好处就在于访问起来非常的简单方便，而且没有编程语言和应用环境上的差别。</p>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="关键问题"><a href="#关键问题" class="headerlink" title="关键问题"></a>关键问题</h4><p>为移动端或者PC端设计网络API接口一个非常重要的原则是：根据业务实体而不是用户界面或操作来设计。如果API接口的设计是根据用户的操作或者界面上的功能设置来设计，随着需求的变更，用户界面也会进行调整，需要的数据也在发生变化，那么后端开发者就要不停的调整API，或者给一个API设计出多个版本，这些都会使项目的开发和维护成本增加。</p>
+<p>下面是某个网站开放API的接口，可以看出API的设计是围绕业务实体来进行的，而且都做到了“见名知意”。</p>
+<table>
+<thead>
+<tr>
+<th>评论</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>comments/show</td>
+<td>获取某条微博的评论列表</td>
+</tr>
+<tr>
+<td>comments/by_me</td>
+<td>自己的评论列表</td>
+</tr>
+<tr>
+<td>comments/to_me</td>
+<td>收到的评论列表</td>
+</tr>
+<tr>
+<td>comments/mentions</td>
+<td>@了自己的评论列表</td>
+</tr>
+<tr>
+<td>comments/create</td>
+<td>创建一条评论</td>
+</tr>
+<tr>
+<td>comments/destroy</td>
+<td>删除一条评论</td>
+</tr>
+<tr>
+<td>comments/reply</td>
+<td>回复一条评论</td>
+</tr>
+</tbody>
+</table>
+<p>注意：上面的API接口并不是REST风格的，关于REST的知识，可以阅读阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" target="_blank" rel="noopener">《理解RESTful架构》</a>以及<a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="noopener">《RESTful API设计指南》</a>。</p>
+<p>API接口返回的数据通常都是JSON或XML格式，我们这里不讨论后者。对于JSON格式的数据，我们需要做到不要返回null这的值，因为这样的值一旦处置失当，会给移动端的开发带来麻烦（移动端可能使用强类型语言）。要解决这个问题可以从源头入手，在设计数据库的时候，尽量给每个字段都加上“not null”约束或者设置合理的默认值约束。</p>
+<h4 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h4><ol>
+<li>更新提示问题：设计一个每次使用系统首先要访问的API，该API会向移动端返回系统更新的相关信息，这样就可以提升用户更新App了。</li>
+<li>版本升级问题：API版本升级时应该考虑对低版本的兼容，同时要让新版本和旧版本都能够被访问，可以在URL中包含版本信息或者在将版本号放在HTTP(S)协议头部，关于这个问题有很多的争论，有兴趣的可以看看<a href="https://stackoverflow.com/questions/972226/how-to-version-rest-uris" target="_blank" rel="noopener">stack overflow</a>上面对这个问题的讨论。</li>
+<li>图片尺寸问题：移动端对于一张图片可能需要不同的尺寸，可以在获取图片时传入尺寸参数并获取对应的资源；更好的做法是直接使用云存储或CDN（直接提供了图片缩放的功能），这样可以加速对资源的访问。</li>
+</ol>
+<h3 id="文档撰写"><a href="#文档撰写" class="headerlink" title="文档撰写"></a>文档撰写</h3><p>下面以设计评论接口为例，简单说明接口文档应该如何撰写。</p>
+<h4 id="评论接口"><a href="#评论接口" class="headerlink" title="评论接口"></a>评论接口</h4><p>全局返回状态码</p>
+<table>
+<thead>
+<tr>
+<th>返回码</th>
+<th>返回信息</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10000</td>
+<td>获取评论成功</td>
+<td></td>
+</tr>
+<tr>
+<td>10001</td>
+<td>创建评论成功</td>
+<td></td>
+</tr>
+<tr>
+<td>10002</td>
+<td>无法创建评论</td>
+<td>创建评论时因违反审核机制而无法创建</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>评论已被删除</td>
+<td>查看评论时评论因不和谐因素已被删除</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><p><strong>GET</strong> <code>/comments/{article-id}</code></p>
+<p>开发者：王大锤</p>
+<p>最后更新时间：2018年8月10日</p>
+<p>标签：v 1.0</p>
+<p>接口说明：获取指定文章的所有评论</p>
+<p>使用帮助：默认返回20条数据，需要在请求头中设置身份标识（key）</p>
+<p>请求参数：</p>
+<p>| 参数名 | 类型   | 是否必填 | 参数位置 | 说明                                 |<br>| —— | —— | ——– | ——– | ———————————— |<br>| page   | 整数   | 否       | 查询参数 | 页码，默认值1                        |<br>| size   | 整数   | 否       | 查询参数 | 每次获取评论数量（10~100），默认值20 |<br>| key    | 字符串 | 是       | 请求头   | 用户的身份标识                       |</p>
+<p>响应信息：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"code"</span>: <span class="number">10000</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"获取评论成功"</span>,</span><br><span class="line">    <span class="attr">"page"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"size"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">"totalPage"</span>: <span class="number">35</span>,</span><br><span class="line">    <span class="attr">"contents"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"userId"</span>: <span class="number">1700095</span>,</span><br><span class="line">            <span class="attr">"nickname"</span>: <span class="string">"王大锤"</span>,</span><br><span class="line">            <span class="attr">"pubDate"</span>: <span class="string">"2018年7月31日"</span>,</span><br><span class="line">            <span class="attr">"content"</span>: <span class="string">"小编是不是有病呀"</span>,</span><br><span class="line">            /* ... */</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">        	"userId", 1995322,</span><br><span class="line">            "nickname": "白元芳",</span><br><span class="line">            "pubDate": "2018年8月2日",</span><br><span class="line">            "content": "楼上说得好",</span><br><span class="line">            /* ... */</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>POST</strong> <code>/comments/{article-id}</code></p>
+<p>开发者：王大锤</p>
+<p>最后更新时间：2018年8月10日</p>
+<p>标签：v 1.0</p>
+<p>接口说明：为指定的文章创建评论</p>
+<p>使用帮助：暂无</p>
+<p>请求参数：</p>
+<p>| 参数名  | 类型   | 是否必填 | 参数位置 | 说明       |<br>| ——- | —— | ——– | ——– | ———- |<br>| userId  | 字符串 | 是       | 消息体   | 用户ID     |<br>| key     | 字符串 | 是       | 请求头   | 用户的令牌 |<br>| content | 字符串 | 是       | 消息体   | 评论的内容 |</p>
+<p>响应信息：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"code"</span>: <span class="number">10001</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"创建评论成功"</span>,</span><br><span class="line">    <span class="attr">"comment"</span>: &#123;</span><br><span class="line">        <span class="attr">"pubDate"</span>: <span class="string">"2018年7月31日"</span>,</span><br><span class="line">        <span class="attr">"content"</span>: <span class="string">"小编是不是有病呀"</span></span><br><span class="line">        /* ... */</span><br><span class="line">    &#125;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This theme was developed by <a href="https://github.com/klugjo">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/11/19/Python_Idiom/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/08/29/团队项目开发/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/08/29/PEP 8风格指南/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/08/17/项目部署上线指南/">Untitled</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/?lang=en">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.instagram.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://dribbble.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-dribbble"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.behance.net/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-behance"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://500px.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-500px"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:test@example.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
